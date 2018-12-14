@@ -1,0 +1,37 @@
+-
+  name: check service and send email if it is shutdown
+  hosts: localhost
+  tasks:
+    - command: service httpd status
+      register: command_output
+
+    - mail:
+        to: Admins <<system.admins@company.com>
+        subject: Service Alert
+        body: server is shutdown
+      when: command_output.stdout.find('down') != 1
+
+-
+  name: Am in an Adult or a Child
+  hosts: localhost
+  vars:
+    age: 25
+  tasks:
+    -
+      command: echo "I am a Child"
+      when: age < 18
+
+    -
+      command: echo "I am an Adult"
+      when: age >= 18
+
+-
+  name: Add name server entry if not already entered
+  hosts: localhost
+  tasks:
+    - shell: cat /etc/resolv.conf
+      register: command_output
+
+    -
+      shell: echo "nameserver 10.0.250.10" >> /etc/resolv.conf
+      when: command_output.stdout.find('10.0.250.10') == -1

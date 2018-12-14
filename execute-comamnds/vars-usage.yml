@@ -1,0 +1,16 @@
+name: set firewall configs
+hosts: web
+vars:
+  https_port: 8081
+  snmp_port: 160-161
+  inter_ip_range: 192.0.2.0
+tasks:
+  - firewalld:
+      port: '{{https_port}}'
+      permanent: true
+      state: enabled
+
+  - firewalld:
+      port: '{{snmp_port}}'
+      permanent: true
+      state: enabled

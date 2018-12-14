@@ -1,0 +1,10 @@
+-
+  name: set firewall configs
+  hosts: web_user
+  # Include variables in a file and use as below
+  vars_files:
+    - variables.yml
+
+  # Include tasks in a file and use as below
+  tasks:
+    - include: tasks.yml
