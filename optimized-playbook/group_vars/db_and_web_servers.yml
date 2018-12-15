@@ -1,0 +1,4 @@
+# We can group servers in inventory and assign values to the group 
+db_name: employee_db
+db_user: db_user
+db_password: Passw0rd
